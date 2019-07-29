@@ -51,23 +51,25 @@ function getTasks(task) {
 function addTask(e) {
     if (taskInput.value === '') {
         alert('Add a task');
+    } else {
+        const li = document.createElement('li');
+
+        li.className = 'collection-item'
+        li.appendChild(document.createTextNode(taskInput.value));
+    
+        const link = document.createElement('a');
+            link.className = 'delete-item secondary-content'
+            link.innerHTML = '<i class="fa fa-remove"></i>';
+    
+        li.appendChild(link)
+        taskList.appendChild(li);
+    
+        storeTaskInLocalStorage(taskInput.value);
+        taskInput.value = '';
+    
+        e.preventDefault();
     }
-    const li = document.createElement('li');
-
-    li.className = 'collection-item'
-    li.appendChild(document.createTextNode(taskInput.value));
-
-    const link = document.createElement('a');
-        link.className = 'delete-item secondary-content'
-        link.innerHTML = '<i class="fa fa-remove"></i>';
-
-    li.appendChild(link)
-    taskList.appendChild(li);
-
-    storeTaskInLocalStorage(taskInput.value);
-    taskInput.value = '';
-
-    e.preventDefault();
+    
 }
 
 function storeTaskInLocalStorage(task) {
