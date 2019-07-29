@@ -11,6 +11,9 @@ loadEventListners();
 function loadEventListners() {
     // looking for a submit
     form.addEventListener('submit', addTask)
+
+    // remove an event
+    taskList.addEventListener('click', removeTask)
 }
 
 function addTask(e) {
